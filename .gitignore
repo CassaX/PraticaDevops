@@ -1,3 +1,22 @@
+# ----------------------------------------
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# IntelliJ IDEA
+*.iml
+.idea/
+out/
+
+# Eclipse
+.project
+.classpath
+.settings/
+target/
+
+# Maven
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -7,11 +26,36 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
-# https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
 
-# Eclipse m2e generated files
-# Eclipse Core
-.project
-# JDT-specific (Eclipse Java Development Tools)
-.classpath
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker
+*.pid
+*.tar
+*.bak
+docker-compose.override.yml
+
+# Environment files
+.env
+.env.*
+
+# MySQL volumes (adjust if needed)
+mysql-data/
+db-data/
+data/
+
+# VS Code
+.vscode/
+
+# Backup files
+*~
+*.swp
+*.swo
+*.bak
