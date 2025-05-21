@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @WebServlet("/remover")
 public class RemoverPessoaServlet extends HttpServlet {
     private PessoaDAO dao = new PessoaDAO();
-
+    //metodo que faz a conexão com a aplicação logger    
     private void registrarLog(int pessoaId, String nome, String acao) throws IOException {
         String url = "http://logger-service:8080/registrar-log?" +
                     "pessoaId=" + URLEncoder.encode(String.valueOf(pessoaId), "UTF-8") +
@@ -29,7 +29,7 @@ public class RemoverPessoaServlet extends HttpServlet {
     }
 
     @Override
-
+    //depois de removido manda para o logger a mensagem para ser alocada no banco
     protected void doGet(HttpServletRequest req, jakarta.servlet.http.HttpServletResponse resp) throws ServletException, IOException {
         String idParam = req.getParameter("id");
         if (idParam != null) {

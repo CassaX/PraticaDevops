@@ -21,7 +21,7 @@ public class PessoaDAO {
             e.printStackTrace();
         }
     }
-
+    //metodo para pegar a lista de pessoas
     public List<Pessoa> listar() {
         List<Pessoa> pessoas = new ArrayList<>();
         String sql = "SELECT * FROM pessoa";
@@ -44,7 +44,7 @@ public class PessoaDAO {
         }
         return pessoas;
     }
-
+    //metodo para buscar a pessoa especifica no banco
     public Pessoa buscarPorId(int id) {
         String sql = "SELECT * FROM pessoa WHERE id = ?";
         try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD); PreparedStatement ps = con.prepareStatement(sql)) {
@@ -66,7 +66,7 @@ public class PessoaDAO {
         }
         return null;
     }
-
+    //metodo para adicionar no banco
     public boolean adicionar(Pessoa p) {
         String sql = "INSERT INTO pessoa (nome, idade, cpf, telefone, email) VALUES (?, ?, ?, ?, ?)";
         try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -83,7 +83,7 @@ public class PessoaDAO {
         }
         return false;
     }
-
+    //metodo para remover do banco
     public boolean remover(int id) {
         String sql = "DELETE FROM pessoa WHERE id = ?";
         try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);

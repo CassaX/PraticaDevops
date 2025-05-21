@@ -13,6 +13,7 @@ public class ListarPessoasServlet extends HttpServlet {
     private PessoaDAO dao = new PessoaDAO();
 
     @Override
+    //faz o direcionamento para a pagina que possui a lista de pessoas
     protected void doGet(HttpServletRequest req, jakarta.servlet.http.HttpServletResponse resp) throws ServletException, IOException {
         List<Pessoa> pessoas = dao.listar();
         req.setAttribute("pessoas", pessoas);

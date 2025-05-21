@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @WebServlet(name = "PessoaServlet", urlPatterns = {"/addPessoa"})
 public class PessoaServlet extends HttpServlet {
     private PessoaDAO dao = new PessoaDAO();
-
+    //metodo para conexão com logger
     private void registrarLog(int pessoaId, String nome, String acao) throws IOException {
         String url = "http://logger-service:8080/registrar-log?" +
                     "pessoaId=" + URLEncoder.encode(String.valueOf(pessoaId), "UTF-8") +
@@ -30,11 +30,13 @@ public class PessoaServlet extends HttpServlet {
     }
 
     @Override
+    //chama o formulario para adicionar pessoas
     protected void doGet(HttpServletRequest req, jakarta.servlet.http.HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("addPessoa.jsp").forward(req, resp);
     }
 
     @Override
+    //verifica os dados, insere no banco e envia o log para o logger
     protected void doPost(HttpServletRequest req, jakarta.servlet.http.HttpServletResponse resp) throws ServletException, IOException {
         if (req.getAttribute("formProcessed") != null) {
             resp.sendRedirect(req.getContextPath() + "/listar");
