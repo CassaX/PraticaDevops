@@ -1,4 +1,4 @@
-# Stage 1: Build com Maven + JDK 17
+#  Build com Maven + JDK 17
 FROM maven:3.9-eclipse-temurin-17 AS build
 
 WORKDIR /app
@@ -21,6 +21,3 @@ COPY --from=build /app/target/app.war /usr/local/tomcat/webapps/ROOT.war
 
 # Expõe a porta 8080
 EXPOSE 8080
-
-# Comando padrão do Tomcat (não precisa sobrescrever)
-# CMD ["catalina.sh", "run"]
