@@ -30,7 +30,7 @@
 
     <div class="btn-container">
         <button class="btn" onclick="window.location.reload();">Atualizar</button>
-        <a href="http://localhost:8080/" class="btn">Voltar ao menu principal</a>
+        <a href="/" class="btn">Voltar ao menu principal</a>
     </div>
 
 </body>

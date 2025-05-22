@@ -9,7 +9,7 @@
     <h1>Menu Principal</h1>
     <div class="btn-container">
         <a href="listar" class="btn">Listar Pessoas</a>
-        <a href="http://localhost:8081/logs" class="btn">Ver Logs</a>
+        <a href="/logger/logs" class="btn">Ver Logs</a>
         <a href="addPessoa" class="btn">Adicionar Pessoa</a>
     </div>
 </body>

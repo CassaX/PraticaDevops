@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class LoggerServlet extends HttpServlet {
     private LogDAO dao = new LogDAO();
 
-    // GET /logs - Listar logs
+    // GET  Listar logs
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
             throws ServletException, IOException {
@@ -21,7 +21,7 @@ public class LoggerServlet extends HttpServlet {
         req.setAttribute("logs", logs);
         req.getRequestDispatcher("/logs.jsp").forward(req, resp);
     }
-    // POST /registrar-log - Registrar novo log
+    // POST Registrar novo log
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {

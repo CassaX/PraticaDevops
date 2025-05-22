@@ -33,7 +33,7 @@
     </table>
     <div class="btn-container">
         <a href="addPessoa" class="btn">Adicionar Pessoa</a>
-        <a href="index.jsp" class="btn">Voltar ao Menu</a>
+        <a href="/" class="btn">Voltar ao Menu</a>
     </div>
 </body>
 </html>
