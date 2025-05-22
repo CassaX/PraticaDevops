@@ -2,8 +2,11 @@
 Aplicação básica de cadastro de pessoas que utiliza Docker com 4 conteiners.
 
 1 Conteiner. Aplicação principal
+
 2 Conteiner. Aplicação secundaria que controla os logs do sistema
+
 3 Conteiner. Banco de dados Mysql
+
 4 Conteiner. Nginx para controle do fluxo entre os conteiners no frontend
 
 Pré-Requisitos:
