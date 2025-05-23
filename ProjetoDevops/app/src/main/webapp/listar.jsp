@@ -26,6 +26,7 @@
             <td><%= p.getTelefone() %></td>
             <td><%= p.getEmail() %></td>
             <td>
+                <a href="editar?id=<%= p.getId() %>" class="btn">Editar</a>
                 <a href="remover?id=<%= p.getId() %>" class="btn btn-danger">Remover</a>
             </td>
         </tr>

@@ -96,4 +96,23 @@ public class PessoaDAO {
         }
         return false;
     }
+
+    //metodo para editar a pessoa
+    public boolean atualizar(Pessoa p) {
+        String sql = "UPDATE pessoa SET nome = ?, idade = ?, cpf = ?, telefone = ?, email = ? WHERE id = ?";
+        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+            PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, p.getNome());
+            ps.setInt(2, p.getIdade());
+            ps.setString(3, p.getCpf());
+            ps.setString(4, p.getTelefone());
+            ps.setString(5, p.getEmail());
+            ps.setInt(6, p.getId());
+            int affected = ps.executeUpdate();
+            return affected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
