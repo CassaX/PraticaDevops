@@ -11,17 +11,17 @@ Aplicação básica de cadastro de pessoas que utiliza Docker com 4 conteiners.
 
 ### Aplicação Principal CRUD de Pessoas:
 
-Cadastro de pessoas com: nome, idade, CPF, telefone e email
+Cadastro de pessoas com: nome, idade, CPF, telefone e email.
 
-Listagem, adição, edição e exclusão de pessoas com acesso ao banco
+Listagem, adição, edição e exclusão de pessoas com acesso ao banco.
 
-Cada ação é enviada uma mensagem para o contêiner do logger
+Cada ação é enviada uma mensagem para o contêiner do logger.
 
 ### Aplicação Secundaria - Serviço de Logs:
 
 Recebe as mensagens da aplicação principal e registra as ações do sistema no banco de dados.
 
-Listagem de logs com data/hora e descrição
+Listagem de logs com data/hora e descrição.
 
 ### Banco de dados Mysql
 Conteiner para o banco de dados que possue o registro de pessoas e os logs do sistema.
