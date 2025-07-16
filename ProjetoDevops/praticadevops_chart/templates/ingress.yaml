@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: praticadevops-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-set-headers: "k8s-proxy-headers"
+spec:
+  rules:
+  - host: k8s.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: app-service
+            port:
+              number: 8080
+      - path: /logger
+        pathType: Prefix
+        backend:
+          service:
+            name: logger-service
+            port:
+              number: 8080
