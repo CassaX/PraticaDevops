@@ -138,7 +138,7 @@ Comece clonando o projeto para sua máquina local e navegando até o diretório 
 minikube start --driver=docker
 
 3. Utilizar o script de automação
-Executar ./ScriptAutomacao
+Executar ./ScriptAutomacao, no qual nesse script ocorre a configuração do ambiente do minikube, builda as imagens dos conteiners e envia para o kubernetes e por fim utiliza o helm upgrade --install para executar o helm chart.
 
 4. Configurar Acesso Externo (k8s.local)
 Para acessar a aplicação via k8s.local no seu navegador, você precisa configurar o arquivo de hosts do seu sistema operacional.
