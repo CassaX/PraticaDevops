@@ -20,4 +20,6 @@ docker build -t cassax/praticadevops-logger:latest ./logger || { echo "ERRO: Bui
 echo "--- Imagens disponíveis no Minikube ---"
 minikube image ls | grep cassax
 
-echo "✅ Processo concluído! Use as imagens nos seus deployments Kubernetes."
+echo "Use as imagens nos seus deployments Kubernetes."
+
+helm upgrade --install praticadevops ./praticadevops_chart
