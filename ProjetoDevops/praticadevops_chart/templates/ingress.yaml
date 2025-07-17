@@ -2,12 +2,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: praticadevops-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/proxy-set-headers: "k8s-proxy-headers"
 spec:
+  ingressClassName: nginx
   rules:
-  - host: k8s.local
-    http:
+  - http:
       paths:
       - path: /
         pathType: Prefix
