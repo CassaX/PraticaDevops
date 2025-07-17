@@ -18,7 +18,7 @@ Também desenvolvido em Java, dedicado a registrar e listar eventos (logs) da ap
 
 Persiste os dados de logs no banco de dados MySQL.
 
-Exposto no caminho /logs da URL pública.
+Exposto no caminho /logs.
 
 ## Banco de Dados MySQL (mysql-service):
 
@@ -29,10 +29,10 @@ Configurado com persistência de dados para garantir a durabilidade das informa�
 # Componentes e Artefatos Kubernetes
 A implantação completa da aplicação no Kubernetes é orquestrada por um Helm Chart, que agrupa e gerencia os seguintes artefatos:
 
-1. Deployments
+## Deployments
 Definem o estado desejado para os pods de cada componente, garantindo que o número especificado de réplicas esteja sempre em execução.
 
-## app-deployment:
+### app-deployment:
 
 Imagem Docker: cassax/praticadevops-app:latest (deve ser carregada localmente no Minikube).
 
@@ -40,7 +40,7 @@ Porta do Contêiner: 8080 (onde o servidor Tomcat/aplicação Java escuta).
 
 Configuração de Ambiente: As credenciais e o host do banco de dados MySQL são injetados como variáveis de ambiente, obtidas de um Kubernetes Secret.
 
-## logger-service-deployment:
+### logger-service-deployment:
 
 Imagem Docker: cassax/praticadevops-logger:latest (deve ser carregada localmente no Minikube).
 
@@ -48,7 +48,7 @@ Porta do Contêiner: 8080 (onde o servidor Tomcat/serviço de logs escuta).
 
 Configuração de Ambiente: Similar ao app-deployment, obtém as credenciais do MySQL via Secret.
 
-## mysql-db-deployment:
+### mysql-db-deployment:
 
 Imagem Docker: cassax/mysql-db:latest (imagem customizada contendo o script init.sql para inicialização do banco).
 
@@ -60,55 +60,55 @@ Volume Persistente: Utiliza um PersistentVolumeClaim (mysql-pvc) para garantir q
 
 Probes de Saúde (livenessProbe, readinessProbe): Monitoram a disponibilidade do MySQL para garantir que ele esteja sempre pronto para aceitar conexões.
 
-2. Services
+## Services
 Abstraem os pods, fornecendo um nome de rede estável e um IP interno para que outros componentes possam se comunicar com eles.
 
-## app-service:
+### app-service:
 
 Tipo: ClusterIP (acessível apenas internamente no cluster).
 
 Porta: 8080 (mapeia para a targetPort 8080 dos pods do app-deployment).
 
-## logger-service:
+### logger-service:
 
 Tipo: ClusterIP (acessível apenas internamente no cluster).
 
 Porta: 8080 (mapeia para a targetPort 8080 dos pods do logger-service-deployment).
 
-## mysql-service:
+### mysql-service:
 
 Tipo: ClusterIP (acessível apenas internamente no cluster).
 
 Porta: 3306 (mapeia para a targetPort 3306 do pod do mysql-db-deployment). Este é o nome de host (mysql-service) que as aplicações (app-service e logger-service) usam para se conectar ao banco de dados.
 
-3. Ingress
+## Ingress
 Gerencia o acesso externo aos serviços no cluster, atuando como um roteador HTTP/HTTPS.
 
-## appservice-ingress:
+### appservice-ingress:
 
 Ingress Class: nginx (requer o NGINX Ingress Controller habilitado no Minikube).
 
 Host: k8s.local (a URL pela qual a aplicação será acessada externamente).
 
-## Regras de Roteamento:
+### Regras de Roteamento:
 
 path: /logs (pathType: Exact): Roteia requisições exatas para http://k8s.local/logs para o logger-service na porta 8080.
 
 path: / (pathType: Prefix): Roteia todas as outras requisições que não correspondem a /logs em http://k8s.local/ para o app-service na porta 8080.
 
-4. PersistentVolumeClaim (PVC)
+## PersistentVolumeClaim (PVC)
 Solicita e provisiona armazenamento persistente para o banco de dados.
 
-## mysql-pvc:
+### mysql-pvc:
 
 Modo de Acesso: ReadWriteOnce (o volume pode ser montado como leitura/escrita por um único nó).
 
 Armazenamento: 2Gi (solicita 2 Gigabytes de armazenamento).
 
-5. Secret
+## Secret
 Armazena informações sensíveis (como senhas de banco de dados) de forma segura, evitando que elas fiquem expostas diretamente nos arquivos de Deployment.
 
-## mysql-secrets:
+### mysql-secrets:
 
 Contém as chaves MYSQL_ROOT_PASSWORD e MYSQL_DATABASE, ambas com o valor root (codificado em Base64). As aplicações e o próprio MySQL utilizam esses valores para configuração.
 
