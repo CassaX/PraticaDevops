@@ -130,9 +130,9 @@ Siga os passos abaixo para implantar a aplicação no seu ambiente Minikube.
 1. Clone o Repositório
 Comece clonando o projeto para sua máquina local e navegando até o diretório principal:
 
-git clone https://github.com/CassaX/PraticaDevops.git
-
-cd PraticaDevops
+    git clone https://github.com/CassaX/PraticaDevops.git
+    
+    cd PraticaDevops
 
 2. Inicia o Minikube utilizando o driver Docker
 minikube start --driver=docker
