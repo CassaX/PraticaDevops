@@ -10,7 +10,7 @@ import java.util.List;
 
 public class PessoaDAO {
 
-    private static final String URL = "jdbc:mysql://db:3306/devopsdb";
+    private static final String URL = "jdbc:mysql://mysql-service:3306/root?user=root&password=root";
     private static final String USER = "root";
     private static final String PASSWORD = "root";
 
