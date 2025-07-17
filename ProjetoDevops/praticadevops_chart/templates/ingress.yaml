@@ -2,23 +2,33 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: appservice-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
+  ingressClassName: nginx
   rules:
   - host: k8s.local
     http:
       paths:
-
-      - path: /logger/logs
-        pathType: Prefix
+      - path: /logs
+        pathType: Exact
         backend:
           service:
             name: logger-service
             port:
-              number: 8080 # Porta do logger-service
-      - path: / 
+              number: 8080
+      - path: /registrar-log
+        pathType: Exact
+        backend:
+          service:
+            name: logger-service
+            port:
+              number: 8080
+      - path: /
         pathType: Prefix
         backend:
           service:
             name: app-service
             port:
-              number: 8080 # Porta do app-service
+              number: 8080
