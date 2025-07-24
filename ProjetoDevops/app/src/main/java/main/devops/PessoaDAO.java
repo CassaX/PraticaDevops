@@ -10,9 +10,13 @@ import java.util.List;
 
 public class PessoaDAO {
 
-    private static final String URL = "jdbc:mysql://mysql-service:3306/root?user=root&password=root";
-    private static final String USER = "root";
-    private static final String PASSWORD = "root";
+    private static final String HOST = System.getenv("DB_HOST");
+    private static final String PORT = System.getenv("DB_PORT");
+    private static final String DATABASE = System.getenv("DB_NAME");
+    private static final String USER = System.getenv("DB_USER");
+    private static final String PASSWORD = System.getenv("DB_PASSWORD");
+
+    private static final String URL = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
 
     public PessoaDAO() {
         try {
